@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="mon_style.css" >
+		<title>Albums</title>
+	</head>
+	<body>
+		<div class="container">
+			<nav class="navbar">
+				<div class="page-header">
+					<ul class="nav nav-pills pull-right ">
+						<li> <a href="test/index.html">Accueil </a></li>
+						<li><a href="afficherFilm.html">Liste des films </a></li>
+						<li> <a href="inscription.html">Inscription </a></li>
+
+						<li>
+							<a href="connexion.html"> Connexion </Connexion><i class="glyphicon glyphicon-user"></i></a> </li>
+						</li>
+						<li>
+							<form method="post"  action="">
+								<input type='submit' class="btn btn-info button_deco" class="btn btn-info" value='Se déconnecter'/>
+							</form>
+						<li>
+							<form class="navbar-form navbar-left form_deco" role="search">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search">
+								</div>
+								<button type="submit" class="btn btn-default">Rechercher</button>
+							</form>
+						</li>
+
+					</ul>
+					<h3 class="modal-title titre_site"> <a class="titre_site" href="#"><i class="glyphicon glyphicon-film"></i> HelloCine</a>
+					</h3>
+				</div>
+			</nav>
+
+			<h3>Recherche</h3>
+			<form action="" method="post">
+			<table class="table table-stripped">
+				<tr>
+					<td><label for="artiste"><strong>Artiste :</strong></label>
+						<select name="artiste">
+							<option selected="selected" disabled="disabled" >Tous</option>
+
+								<option value="?">?</option>";
+							e
+						</select>
+					</td>
+					<td><label for="note"><strong>Note entre :</strong></label>
+						<select name="note">
+							<option selected="selected" disabled="disabled">Tous</option>
+							<option value=1>0 et 1</option>
+							<option value=2>1 et 2</option>
+							<option value=3>2 et 3</option>
+							<option value=4>3 et 4</option>
+							<option value=5>4 et 5</option>
+							<option value=6>5</option>
+						</select>
+					</td>
+					<td><label for="genre"><strong>Genre :</strong></label>
+						<select name="genre">
+							<option  selected="selected" disabled="disabled">Tous</option>
+								<option value="ss"> ss</option>"
+
+						</select>
+					</td>
+					<td><label for="date"><strong>Sortie le :</strong></label>
+					<input type="date" name="date" id="date"/></td>
+					<td><input type="submit" class="btn btn-info" name="recherche" value="Rechercher"/></td>
+				</tr>
+				</table>
+			</form>
+			<br>
+
+			<h2>Liste des films</h2>
+			<div class="row">
+
+				<div class="col-sm-4 col-md-4">
+					<div class="thumbnail">
+						<img src="..." alt="...">
+						<div class="caption">
+							<h3>Films1</h3>
+							<p>Description</p>
+							<i>Année </i>
+							<p><a href="#" class="btn btn-primary" role="button">Voir </a> <a href="#" class="btn btn-default" role="button">Editer </a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-4">
+					<div class="thumbnail">
+						<img src="..." alt="...">
+						<div class="caption">
+							<h3>Films1</h3>
+							<p>Description</p>
+							<i>Année </i>
+							<p><a href="#" class="btn btn-primary" role="button">Voir </a> <a href="#" class="btn btn-default" role="button">Editer </a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-4">
+					<div class="thumbnail">
+						<img src="..." alt="...">
+						<div class="caption">
+							<h3>Films1</h3>
+							<p>Description</p>
+							<i>Année </i>
+							<p><a href="#" class="btn btn-primary" role="button">Voir </a> <a href="#" class="btn btn-default" role="button">Editer </a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-4">
+					<div class="thumbnail">
+						<img src="..." alt="...">
+						<div class="caption">
+							<h3>Films1</h3>
+							<p>Description</p>
+							<i>Année </i>
+							<p><a href="#" class="btn btn-primary" role="button">Voir </a> <a href="#" class="btn btn-default" role="button">Editer </a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<footer>
+				<div class="text-right">
+				<form method="post" action="">
+				<input type='submit' class="btn btn-info row-fluid" value='Ajouter un film'/>
+				</form>
+				</div>
+				<div class="text-center">
+					<a href="">page d'accueil</a>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>
