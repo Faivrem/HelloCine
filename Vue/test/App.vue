@@ -1,16 +1,19 @@
 <template>
-<div class="app">
-</NavBar>
-</div></template>
+    <div>
+        <navbar></navbar>
+    </div>
+
+</template>
 
 
 <script>
- import NavBar from './NavBar.vue'
+    import NavBar from './NavBar.vue';
 
-  export default {
-    name: 'App',
-    components: {NavBar}
-  }
+    export default {
+        components: {
+            'navbar' : NavBar
+        }
+    }
 </script>
 
 <style scoped>
