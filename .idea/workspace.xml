@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="065a649a-9fad-4a5d-a2e7-b93c13f53859" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ServeurNode/films.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServeurNode/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Vue/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/index copy.html" beforeDir="false" afterPath="$PROJECT_DIR$/Vue/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/test/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/test/NavBar.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Vue/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/test/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Vue/test/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="065a649a-9fad-4a5d-a2e7-b93c13f53859" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -25,7 +15,7 @@
     <session id="2001722257">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.opened" value="3" />
@@ -74,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/ServeurNode/server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
+              <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -218,16 +208,15 @@
       <updated>1537777043375</updated>
       <workItem from="1537777044602" duration="8963000" />
       <workItem from="1537880292894" duration="2956000" />
-      <workItem from="1539610573521" duration="2193000" />
+      <workItem from="1539610573521" duration="2232000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14112000" />
+    <option name="totallyTimeSpent" value="14151000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="80" y="128" width="1400" height="794" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24945612" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -292,7 +281,7 @@
     <entry file="file://$PROJECT_DIR$/ServeurNode/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
+          <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
         </state>
       </provider>
     </entry>
