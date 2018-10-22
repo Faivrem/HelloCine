@@ -4,8 +4,8 @@ Vue.component('index', {
     <div class="jumbotron accueil_titre" style="background-image:url(../background.png);">
 	    <h1>Bienvenue sur l'application Hello Ciné !</h1>
 		<p></p>
-		<p><a class="btn btn-primary btn-lg" href="connexion.html" role="button">Connexion</a>
-		<a class="btn btn-primary btn-lg" href="inscription.html.html" role="button">Inscription</a></p>
+		<p><a class="btn btn-primary btn-lg" v-on:click="page = 'connexion'" role="button">Connexion</a>
+		<a class="btn btn-primary btn-lg" v-on:click="page = 'inscription'" role="button">Inscription</a></p>
 	</div>
     `
 });
@@ -15,12 +15,12 @@ Vue.component('navigation-bar', {
     <nav class="navbar">
         <div class="page-header">
             <ul class="nav nav-pills pull-right ">
-                <li> <a href="index.html">Accueil </a></li>
-                <li> <a href="afficherFilm.html">Liste des films </a></li>
-                <li> <a href="inscription.html">Inscription </a></li>
+                <li> <a v-on:click="page = 'accueil'">Accueil </a></li>
+                <li> <a v-on:click="page = 'listeDesFilms'">Liste des films </a></li>
+                <li> <a v-on:click="page = 'inscription'">Inscription </a></li>
 
                 <li>
-                    <a href="connexion.html"> Connexion </Connexion><i class="glyphicon glyphicon-user"></i></a> </li>
+                    <a v-on:click="page = 'connexion'"> Connexion </Connexion><i class="glyphicon glyphicon-user"></i></a> </li>
                 </li>
                 <li>
                     <form method="post"  action="">
@@ -36,19 +36,13 @@ Vue.component('navigation-bar', {
                 </li>
 
             </ul>
-            <h3 class="modal-title titre_site"> <a class="titre_site" href="#"><i class="glyphicon glyphicon-film"></i> HelloCine</a>
+            <h3 class="modal-title titre_site"> <a class="titre_site" href="index.html"><i class="glyphicon glyphicon-film"></i> HelloCine</a>
             </h3>
         </div>
     </nav>
     `
 });
 
-Vue.component('container-film', {
-
-    template : `
-    
-    `
-});
 
 Vue.component('inscription-form', {
 
@@ -138,12 +132,15 @@ Vue.component('film-item', {
     template : `
     <div class="col-sm-4 col-md-4">
         <div class="thumbnail">
-            <img src= '{{ todo.image }}' alt="...">
+            <img :src= "todo.image" alt="...">
             <div class="caption">
                 <h3>{{ todo.titre }}</h3>
                 <p>{{ todo.description }}</p>
                 <i>{{ todo.annee }} </i>
-                <p><a href="#" class="btn btn-primary" role="button">Voir </a> <a href="#" class="btn btn-default" role="button">Editer </a></p>
+                <p>
+                    <a href= "/todo.id" class="btn btn-primary" role="button">Voir </a> 
+                    <a href="#" class="btn btn-default" role="button">Editer </a>
+                </p>
             </div>
         </div>
     </div>
@@ -152,24 +149,76 @@ Vue.component('film-item', {
 });
 
 
+
 Vue.component('footer-item', {
     template: `
-    <footer>
-        <div class="text-center">
-            <a href="index.html">Page d'accueil</a>
-        </div>
-	</footer>
+     <div class="text-center">
+        <a href="index.html">Page d'accueil</a>
+     </div>
     `
 });
+
+Vue.component('ajouter-film-form', {
+    template: `
+    <form method="post" action="">
+		<input type='submit' class="btn btn-info row-fluid" value='Ajouter un film'/>
+	</form>
+    `
+
+});
+
+
+Vue.component('search-form', {
+
+    template: `
+    <h3>Recherche</h3>
+    <form action="" method="post">
+        <table class="table table-stripped">
+            <tr>
+                <td><label for="artiste"><strong>Artiste :</strong></label>
+                    <select name="artiste">
+                        <option selected="selected" disabled="disabled" >Tous</option>
+                            <option value="?">?</option>
+                    </select>
+                </td>
+                <td><label for="note"><strong>Note entre :</strong></label>
+                    <select name="note">
+                        <option selected="selected" disabled="disabled">Tous</option>
+                        <option value=1>0 et 1</option>
+                        <option value=2>1 et 2</option>
+                        <option value=3>2 et 3</option>
+                        <option value=4>3 et 4</option>
+                        <option value=5>4 et 5</option>
+                        <option value=6>5</option>
+                    </select>
+                </td>
+                <td><label for="genre"><strong>Genre :</strong></label>
+                    <select name="genre">
+                        <option  selected="selected" disabled="disabled">Tous</option>
+                            <option value="ss"> ss</option>
+
+                    </select>
+                </td>
+                <td><label for="date"><strong>Sortie le :</strong></label>
+                <input type="date" name="date" id="date"/></td>
+                <td><input type="submit" class="btn btn-info" name="recherche" value="Rechercher"/></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    `,
+});
+
 
 const app = new Vue ({
     el:'#app',
     data: {
         name : "Hello Cine",
+        page : "index",
         filmsList: [
-            { id: 0, titre: 'Films1', description: 'Description1', annee: 'Année 1', image: 'https://www.google.fr/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjMve26vpjeAhWrz4UKHfVBClsQjRx6BAgBEAU&url=https%3A%2F%2Fpngtree.com%2Ffree-icon%2Fclapperboard_959598&psig=AOvVaw3Vh1qasCugvdaKYlc0iydq&ust=1540244074938328'},
-            { id: 1, titre: 'Films2', description: 'Description2', annee: 'Année 2' , image: 'https://www.google.fr/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjMve26vpjeAhWrz4UKHfVBClsQjRx6BAgBEAU&url=https%3A%2F%2Fpngtree.com%2Ffree-icon%2Fclapperboard_959598&psig=AOvVaw3Vh1qasCugvdaKYlc0iydq&ust=1540244074938328'},
-            { id: 2, titre: 'Films3', description: 'Description3', annee: 'Année 3', image: '\'https://www.google.fr/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjMve26vpjeAhWrz4UKHfVBClsQjRx6BAgBEAU&url=https%3A%2F%2Fpngtree.com%2Ffree-icon%2Fclapperboard_959598&psig=AOvVaw3Vh1qasCugvdaKYlc0iydq&ust=1540244074938328'}
+            { id: 0, titre: 'Films1', description: 'Description1', annee: 'Année 1', image: '../film-icon.png'},
+            { id: 1, titre: 'Films2', description: 'Description2', annee: 'Année 2' , image: '../film-icon.png'},
+            { id: 2, titre: 'Films3', description: 'Description3', annee: 'Année 3', image: '../film-icon.png'}
         ]
 
     }
