@@ -11,9 +11,12 @@
 
 <div id="app" class="container">
     <navigation-bar></navigation-bar>
-    <index v-if="page === 'index'" id="index"></index>
-    <search-form v-else-if="page === 'listeDesFilms'"></search-form>
 
+    <section v-if="page === 'index'" id="index">
+        <index ></index>
+    </section>
+
+    <search-form v-else-if="page === 'listeDesFilms'"></search-form>
     <film-item
             v-else-if="page === 'index' || page === 'listeDesFilms'"
             class="row"

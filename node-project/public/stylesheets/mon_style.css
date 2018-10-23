@@ -1,0 +1,54 @@
+.podium {
+    text-align: center;
+}
+.podium div {
+    width:230px;
+    height:230px;
+}
+.top1 {
+    margin:auto
+}
+.top2 {
+    display:inline-block;
+}
+.top3 {
+    display:inline-block;
+}
+
+.mesinputs {
+    text-align: center;
+    width: 10em;
+}
+
+.inputdescription{
+    width: 50em;
+}
+
+.accueil_titre{
+    color: #ffffff
+}
+
+.top_titre_centrer{
+    color: #ffffff;
+    background-color: #0c5460;
+    text-align: center;
+}
+
+.button_deco{
+    padding: 9px 12px;
+
+}
+
+.form_deco{
+    padding: 2px 0px;
+    margin: 0px 0px;
+    width:100%
+}
+
+input .form_deco{
+    color: #0900ff;
+}
+
+a:focus, a:hover {
+    text-decoration: none;
+}
