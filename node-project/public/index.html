@@ -50,52 +50,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
 <script src="component.js"></script>
-<script>
-    // Sans cette ligne + l'import de axios.js (2e <script>), this.$http ne fonctionnera pas
-    Vue.prototype.$http = axios
-    const app = new Vue({
-        el: '#app',
-        data: {
-            currentPage: 'index',
-            filter: '',
-            menu: '',
-            myList: [],
-            name: 'Hello Cine',
-            filmsList: [
-                { id: 0, titre: 'Films1', description: 'Description1', annee: 'Année 1', image: './images/film-icon.png'},
-                { id: 1, titre: 'Films2', description: 'Description2', annee: 'Année 2' , image: './images/film-icon.png'},
-                { id: 2, titre: 'Films3', description: 'Description3', annee: 'Année 3', image: './images/film-icon.png'}
-            ]
-        },
-        created () {
-            // Ici, l'utilisation d'une fonction flêchée () => {} plutôt que function () {} est primordial !
-            // sans fonction fléchée, this.myList = ... ne fonctionnera pas comme prévu
-            this.$http.get('/list')
-                .then(list => {
-                    console.log('affichage de ma liste', list)
-                    this.myList = list.data
-                })
-                .catch(err => {
-                    console.log('error', err)
-                })
-        },
-        methods: {
-            sendNewElement () {
-                this.$http.post('/list', {
-                    name: this.name
-                })
-                    .then(() => {
-                        this.myList.push({
-                            name: this.name
-                        })
-                    })
-            },
-            // Pour discussion entre navigation-bar component et Vue
-            changePage (page) {
-                this.currentPage = page;
-            }
-        }
-    })
+<script src="indexVue.js">
 </script>
 </body>
 </html>

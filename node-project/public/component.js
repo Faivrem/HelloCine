@@ -101,7 +101,7 @@
 
     Vue.component('connexion-form', {
 
-        template : `
+        template: `
     <div class="panel panel-default">
 	    <div class="panel-heading">
 			<h1 class="modal-title">Connexion </h1>
@@ -111,11 +111,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputAddress">Login</label>
-                        <input type="text" class="form-control mesinputs" id="inputAddress" placeholder="Login">
+                        <input v-model ="user" type="text" class="form-control mesinputs" id="inputAddress" placeholder="Login">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="inputEmail4">Mot de passe</label>
-                        <input type="password" class="form-control mesinputs" id="inputEmail4" placeholder="Mot de passe">
+                        <input v-model ="password" type="password" class="form-control mesinputs" id="inputEmail4" placeholder="Mot de passe">
                     </div>
                 </div>
     
@@ -124,15 +124,35 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-primary">Connexion</button>
+                        <button v-on:click="login()" class="btn btn-primary">Connexion</button>
                     </div>
                 </div>
             </form>
         </div>
 	</div>
     
-    `
-    });
+    `,
+        data: function () {
+          return {
+            user: '',
+            password: ''
+          }
+        },
+        methods: {
+          login () {
+            this.$http.post('/login', {
+              user: this.user,
+              password: this.password
+            }).then(function (response){
+              if (response.status === 200) {
+                console.log(response)
+                // Recuperer la session /  privilege
+              }
+            })
+          }
+        }
+      }
+    );
 
     Vue.component('podium', {
 
@@ -148,11 +168,11 @@
         template : `
     <div class="col-sm-4 col-md-4">
         <div class="thumbnail">
-            <img :src= "todo.image" alt="...">
+            <img :src= "todo.Images[1]" alt="...">
             <div class="caption">
-                <h3>{{ todo.titre }}</h3>
-                <p>{{ todo.description }}</p>
-                <i>{{ todo.annee }} </i>
+                <h3>{{ todo.Title }}</h3>
+                <p>{{ todo.Plot }}</p>
+                <i>{{ todo.Year }} </i>
                 <p>
                     <a href= "/todo.id" class="btn btn-primary" role="button">Voir </a> 
                     <a href="#" class="btn btn-default" role="button">Editer </a>
@@ -225,22 +245,4 @@
     `,
     });
 
-
 })()
-
-
-/*
-const app = new Vue ({
-    el:'#app',
-    data: {
-        name : "Hello Cine",
-        page : "index",
-        filmsList: [
-            { id: 0, titre: 'Films1', description: 'Description1', annee: 'Année 1', image: '../film-icon.png'},
-            { id: 1, titre: 'Films2', description: 'Description2', annee: 'Année 2' , image: '../film-icon.png'},
-            { id: 2, titre: 'Films3', description: 'Description3', annee: 'Année 3', image: '../film-icon.png'}
-        ]
-
-    }
-});
-*/
