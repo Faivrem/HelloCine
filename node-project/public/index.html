@@ -9,6 +9,7 @@
 </head>
 <body>
 <main id="app" class="container">
+    {{ pseudo }}
     <navigation-bar
         v-on:change-page="changePage($event)"
     ></navigation-bar>
@@ -23,16 +24,21 @@
 
 
     <section v-if="currentPage === 'listeDesFilms'  || currentPage === 'index'" id="listeDesFilms">
+        <div class="row" v-for="i in Math.ceil(filmsList.length / 3)">
         <film-item
-                class="row"
-                v-for="film in filmsList"
+                v-for="film in filmsList.slice((i - 1) * 3, i * 3)"
                 v-bind:todo="film"
+                v-bind:user="pseudo"
                 v-bind:key="film.id">
         </film-item>
+        </div>
     </section>
 
     <section v-if="currentPage === 'connexion'" id="connexion">
-        <connexion-form></connexion-form>
+        <connexion-form
+                v-bind:user.sync="pseudo"
+                @changeuser="changeuser">
+        </connexion-form>
     </section>
 
     <section v-if="currentPage === 'inscription'" id="inscription">

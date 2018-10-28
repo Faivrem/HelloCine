@@ -23,8 +23,7 @@ router.post('/login', (req, res) => {
   if (listUsers[username] == password){
       console.log('connecté')
       res.status(200).json({
-        user: "test",
-        privilege :"user"
+        user: username
       })
   }
   else {
@@ -42,15 +41,5 @@ router.post('/logout', (req, res) => {
   })
 })
 
-/*
-router.post('/connect', (req, res) => {
-    const username = req.body.username
-    const password = req.body.password
-    if (username === 'louis' && password === 'secret') {
-        console.log('connecté')
-    } else {
-        res.status(400).send('Bouuuh mauvais mdp')
-    }
-})*/
 
 module.exports = router

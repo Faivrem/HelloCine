@@ -8,8 +8,7 @@ const app = new Vue({
     myList: [],
     name: 'Hello Cine',
     filmsList: "",
-    user : "",
-    privilege : "",
+    pseudo : "",
     password : "",
   },
   created () {
@@ -37,6 +36,11 @@ const app = new Vue({
     },
     changePage (page) {
       this.currentPage = page;
+    },
+    changeuser(user){
+      console.log('iciiiiii')
+      this.pseudo = user
+      this.changePage("connexion")
     }
   }
 })

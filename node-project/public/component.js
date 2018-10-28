@@ -100,7 +100,6 @@
     });
 
     Vue.component('connexion-form', {
-
         template: `
     <div class="panel panel-default">
 	    <div class="panel-heading">
@@ -134,22 +133,23 @@
     `,
         data: function () {
           return {
-            user: '',
+            user : this.user,
             password: ''
           }
         },
         methods: {
           login () {
+            var compo = this
             this.$http.post('/login', {
               user: this.user,
               password: this.password
             }).then(function (response){
               if (response.status === 200) {
-                console.log(response)
-                // Recuperer la session /  privilege
-              }
-            })
-          }
+                console.log(response.data.user)
+                compo.$emit('changeuser', response.data.user)
+                }
+              })
+            }
         }
       }
     );
@@ -166,7 +166,8 @@
 
         props : ['todo'],
         template : `
-    <div class="col-sm-4 col-md-4">
+
+    <div class="col-lg-4">
         <div class="thumbnail">
             <img :src= "todo.Images[1]" alt="...">
             <div class="caption">
