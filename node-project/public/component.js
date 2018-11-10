@@ -164,19 +164,19 @@
 
     Vue.component('film-item', {
 
-        props : ['todo'],
+        props : ['filmitem'],
         template : `
 
     <div class="col-lg-4">
         <div class="thumbnail">
-            <img :src= "todo.Images[1]" alt="...">
+            <img :src= "filmitem.Poster" alt="...">
             <div class="caption">
-                <h3>{{ todo.Title }}</h3>
-                <p>{{ todo.Plot }}</p>
-                <i>{{ todo.Year }} </i>
+                <h3>{{ filmitem.Title }}</h3>
+                <p>{{ filmitem.Plot }}</p>
+                <i>{{ filmitem.Year }} </i>
                 <p>
-                    <a href= "/todo.id" class="btn btn-primary" role="button">Voir </a> 
-                    <a href="#" class="btn btn-default" role="button">Editer </a>
+                    <a @click="$emit('event-film', 'viewFilm','filmitem.Index')" class="btn btn-primary" role="button">Voir </a> 
+                    <a @click="$emit('edit-film', 'editFilm','filmitem.Index')" class="btn btn-default" role="button">Editer </a>
                 </p>
             </div>
         </div>
@@ -185,19 +185,140 @@
 
     });
 
+    Vue.component('film-view', {
+
+      props : ['filmitem'],
+      template : `
+  
+      <div class="col-lg-12">
+          <div class="thumbnail">
+          <h1 align="center">{{ filmitem.Title }}</h1>
+          <h4 align="center" >{{ filmitem.Year }} </h4>
+              <img :src= "filmitem.Images[1]" alt="...">
+              <div class="caption">
+                  <p><b>Plot : </b>{{ filmitem.Plot }}</p>
+                  <p><b>Realeased : </b>{{ filmitem.Released }}</p>
+                  <p><b>Actors : </b>{{ filmitem.Actors }}</p>
+                  <p><b>Awards : </b>{{ filmitem.Awards }}</p>
+                  <p><b>Runtime : </b>{{ filmitem.Runtime }}</p>
+                  <p><b>Rating : </b>{{ filmitem.imdbRating }}/10</p>
+                  <p>
+                      <a @click="$emit('change-page', 'editFilm')" class="btn btn-primary" role="button">Editer </a>                            
+                  </p>
+              </div>
+          </div>
+          <a @click="$emit('change-page', 'listeDesFilms')" class="btn btn-default" role="button">Retour à la liste</a>
+      </div>
+      `
+
+    });
+    Vue.component('film-edit', {
+
+      props : ['filmitem'],
+      template : `
+  
+      <div><div class="col-lg-6">
+          <div class="thumbnail">
+           <h1>Titre : <input v-model="filmitem.Title"> </h1>
+           <h2>Image (web) : <input v-model="filmitem.Poster"> </h2>
+           <h4 align="center" > Year : <input type="number" v-model="filmitem.Year"></h4>
+           <h4>Plot :</h4>
+           <textarea v-model="filmitem.Plot" cols="30" rows="5" > </textarea>
+            <p><b>Realeased : </b> <input type="text" v-model="filmitem.Released"></p>
+            <p><b>Actors : </b><input type="text" v-model="filmitem.Actors"> </p>
+            <p><b>Awards : </b><input type="text" v-model="filmitem.Awards"> </p>
+            <p><b>Runtime : </b><input type="text" v-model="filmitem.Runtime"> </p>
+            <p><b>Rating : </b><input type="number" v-model="filmitem.imdbRating"></p>
+         </div>
+     </div>
+          
+          <div class="col-lg-6">
+          <div class="thumbnail">
+          <h1 align="center">{{ filmitem.Title }}</h1>
+          <h4 align="center" >{{ filmitem.Year }} </h4>
+              <img :src= "filmitem.Poster" alt="...">
+              <div class="caption">
+                  <p><b>Plot : </b>{{ filmitem.Plot }}</p>
+                  <p><b>Realeased : </b>{{ filmitem.Released }}</p>
+                  <p><b>Actors : </b>{{ filmitem.Actors }}</p>
+                  <p><b>Awards : </b>{{ filmitem.Awards }}</p>
+                  <p><b>Runtime : </b>{{ filmitem.Runtime }}</p>
+                  <p><b>Rating : </b>{{ filmitem.imdbRating }}/10</p>
+              </div>
+          </div>
+          <a @click="$emit('change-page', 'listeDesFilms')" class="btn btn-default" role="button">Annuler</a>
+      </div>
+      </div>
+      `
+
+    });
+  Vue.component('film-add', {
+    template : `
+      <div>
+      <div class="col-lg-6">
+          <div class="thumbnail">
+           <h1>Titre : <input v-model="filmitem.Title"> </h1>
+           <h2>Image (web) : <input v-model="filmitem.Poster"> </h2>
+           <h4 align="center" > Year : <input type="number" v-model="filmitem.Year"></h4>
+           <h4>Plot :</h4>
+           <textarea v-model="filmitem.Plot" cols="30" rows="5" > </textarea>
+            <p><b>Realeased : </b> <input type="text" v-model="filmitem.Released"></p>
+            <p><b>Actors : </b><input type="text" v-model="filmitem.Actors"> </p>
+            <p><b>Awards : </b><input type="text" v-model="filmitem.Awards"> </p>
+            <p><b>Runtime : </b><input type="text" v-model="filmitem.Runtime"> </p>
+            <p><b>Rating : </b><input type="number" v-model="filmitem.imdbRating"></p>
+         </div>
+     </div>
+          
+          <div class="col-lg-6">
+          <div class="thumbnail">
+          <h1 align="center">{{ filmitem.Title }}</h1>
+          <h4 align="center" >{{ filmitem.Year }} </h4>
+              <img :src= "filmitem.Poster" alt="...">
+              <div class="caption">
+                  <p><b>Plot : </b>{{ filmitem.Plot }}</p>
+                  <p><b>Realeased : </b>{{ filmitem.Released }}</p>
+                  <p><b>Actors : </b>{{ filmitem.Actors }}</p>
+                  <p><b>Awards : </b>{{ filmitem.Awards }}</p>
+                  <p><b>Runtime : </b>{{ filmitem.Runtime }}</p>
+                  <p><b>Rating : </b>{{ filmitem.imdbRating }}/10</p>
+              </div>
+          </div>
+          <a @click="$emit('change-page', 'listeDesFilms')" class="btn btn-default" role="button">Annuler</a>
+      </div>
+      </div>
+      `,
+    data: function () {
+      return {
+        filmitem : {
+          "Title" : '',
+          "Poster" : 'http://nulldefinition.com/wp-content/uploads/2016/09/null_logo-300x300.png',
+          "Year" : 0,
+          "Plot" : '',
+          "Released" : '',
+          "Actors" : '',
+          "Awards" : '',
+          "Runtime" : '',
+          "Rating" : 0,
+        }
+      }
+    }
+
+  });
+
     Vue.component('footer-item', {
         template: `
      <div class="text-center">
-        <a @click="$emit('change-page', 'index')">Page d'accueil</a>
+        <a @click="$emit('change-page', 'index')"  class="btn btn-default" >Page d'accueil</a>
      </div>
     `
     });
 
     Vue.component('ajouter-film-form', {
         template: `
-    <form method="post" action="">
-		<input type='submit' class="btn btn-info row-fluid" value='Ajouter un film'/>
-	</form>
+    <div class="col-lg-12" align="right">
+		  <p><a @click="$emit('change-page', 'addFilm')"  class="btn btn-info" >Ajouter un film</a></p>
+    </div>
     `
 
     });

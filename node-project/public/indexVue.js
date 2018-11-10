@@ -3,6 +3,7 @@ const app = new Vue({
   el: '#app',
   data: {
     currentPage: 'index',
+    currentFilmId : '',
     filter: '',
     menu: '',
     myList: [],
@@ -36,6 +37,14 @@ const app = new Vue({
     },
     changePage (page) {
       this.currentPage = page;
+    },
+    viewFilm (indexFilm) {
+      this.currentFilmId = indexFilm;
+      this.changePage("viewFilm");
+    },
+    editFilm (indexFilm) {
+      this.currentFilmId = indexFilm;
+      this.changePage("editFilm");
     },
     changeuser(user){
       console.log('iciiiiii')
