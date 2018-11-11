@@ -54,6 +54,7 @@
         <film-add
                 v-bind:user="pseudo"
                 v-on:change-page="changePage($event)"
+                v-on:create-film="createFilm($event)"
         >
         </film-add>
     </section>
@@ -68,12 +69,14 @@
     <section v-if="currentPage === 'connexion'" id="connexion">
         <connexion-form
                 v-bind:user.sync="pseudo"
-                @changeuser="changeuser">
+                v-on:changeuser="changeuser">
         </connexion-form>
     </section>
-
     <section v-if="currentPage === 'inscription'" id="inscription">
-        <inscription-form></inscription-form>
+        <inscription-form
+            v-on:inscriptionuser="inscriptionuser($event)"
+        >
+        </inscription-form>
     </section>
 
 

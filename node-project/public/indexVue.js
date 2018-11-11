@@ -38,6 +38,8 @@ const app = new Vue({
     changePage (page) {
       this.currentPage = page;
     },
+
+    // Films
     viewFilm (indexFilm) {
       this.currentFilmId = indexFilm;
       this.changePage("viewFilm");
@@ -46,10 +48,39 @@ const app = new Vue({
       this.currentFilmId = indexFilm;
       this.changePage("editFilm");
     },
+    createFilm (film) {
+      if (film.Title == "") {
+          alert('Veuillez indiquer le titre')
+      }
+      else {
+        film['Index'] = this.filmsList.length
+        this.$http.post('/add',film).then(() =>{
+            this.filmsList.push(film)
+            this.changePage('listeDesFilms')
+            alert('Votre film a bien été créé')
+        })
+      }
+    },
+
+    // User
     changeuser(user){
       console.log('iciiiiii')
       this.pseudo = user
       this.changePage("connexion")
+    },
+    inscriptionuser(user){
+      if (user.password === user.repeatpassword){
+        this.$http.post('/register',user).then(() => {
+            this.changePage('listeDesFilms')
+            alert('Vous êtes désormais inscrit !')
+        }).catch(error =>{
+          console.log(error)
+          alert(error.body)
+        })
+      }
+      else{
+        alert("Le mot de passe n'est pas identique")
+      }
     }
   }
 })

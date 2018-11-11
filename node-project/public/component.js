@@ -71,24 +71,24 @@
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="inputAddress">Login</label>
-                        <input type="text" class="form-control mesinputs" id="inputAddress" placeholder="Login">
+                        <label>Login</label>
+                        <input type="text" class="form-control mesinputs"  v-model="user.login" placeholder="Login">
                     </div>
                 </div>
     
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputEmail4">Mot de passe</label>
-                        <input type="password" class="form-control" id="inputEmail4" placeholder="Mot de passe">
+                        <label>Mot de passe</label>
+                        <input type="password" class="form-control"  v-model="user.password" placeholder="Mot de passe">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputPassword4"> Repéter le mot de passe</label>
-                        <input type="password" class="form-control" id="inputPassword4" placeholder="Mot de passe">
+                        <label>Repéter le mot de passe</label>
+                        <input type="password" class="form-control" v-model="user.repeatpassword"  placeholder="Mot de passe">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        <a @click="$emit('inscriptionuser', user)" class="btn btn-primary" role="button">S'inscrire </a>
                     </div>
                 </div>
             </form>
@@ -96,7 +96,16 @@
     </div>
     
     
-    `
+    `,
+      data: function () {
+        return {
+          user : {
+            'login' : '',
+            'password' :'',
+            'repeatpassword' : ''
+          }
+        }
+      },
     });
 
     Vue.component('connexion-form', {
@@ -194,7 +203,7 @@
           <div class="thumbnail">
           <h1 align="center">{{ filmitem.Title }}</h1>
           <h4 align="center" >{{ filmitem.Year }} </h4>
-              <img :src= "filmitem.Images[1]" alt="...">
+              <img :src= "filmitem.Poster" alt="...">
               <div class="caption">
                   <p><b>Plot : </b>{{ filmitem.Plot }}</p>
                   <p><b>Realeased : </b>{{ filmitem.Released }}</p>
@@ -285,6 +294,7 @@
               </div>
           </div>
           <a @click="$emit('change-page', 'listeDesFilms')" class="btn btn-default" role="button">Annuler</a>
+          <a @click="$emit('create-film', filmitem)" class="btn btn-primary" role="button">Ajouter</a>
       </div>
       </div>
       `,

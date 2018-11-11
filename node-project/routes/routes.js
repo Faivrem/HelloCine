@@ -9,12 +9,35 @@ router.get('/list', (req, res) => {
     res.json(listFilms)
 })
 
+
 router.post('/list', (req, res) => {
     list.push({
         name: req.body.name
     })
     res.send('OK')
 })
+
+/* Film */
+
+router.post('/add',(req,res) => {
+  listFilms.push(req.body)
+  console.log(listFilms)
+  res.status(200).send('OK')
+})
+
+/* User */
+router.post('/register',(req,res) => {
+
+  if (listUsers.hasOwnProperty(req.body.login)){
+    res.status(401).send('NOK')
+  }
+  else{
+    listUsers[req.body.login] = req.body.password
+    res.status(200).send('OK')
+  }
+})
+
+
 
 router.post('/login', (req, res) => {
   const username = req.body.user
