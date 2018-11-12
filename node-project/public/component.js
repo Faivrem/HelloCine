@@ -72,7 +72,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Login</label>
-                        <input type="text" class="form-control mesinputs"  v-model="user.login" placeholder="Login">
+                        <input type="text" class="form-control mesinputs"  v-model="user.username" placeholder="Login">
                     </div>
                 </div>
     
@@ -100,7 +100,7 @@
       data: function () {
         return {
           user : {
-            'login' : '',
+            'username' : '',
             'password' :'',
             'repeatpassword' : ''
           }
@@ -119,7 +119,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputAddress">Login</label>
-                        <input v-model ="user" type="text" class="form-control mesinputs" id="inputAddress" placeholder="Login">
+                        <input v-model ="username" type="text" class="form-control mesinputs" id="inputAddress" placeholder="Login">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="inputEmail4">Mot de passe</label>
@@ -132,7 +132,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <button v-on:click="login()" class="btn btn-primary">Connexion</button>
+                        <button @click="login()" class="btn btn-primary">Connexion</button>
                     </div>
                 </div>
             </form>
@@ -142,22 +142,24 @@
     `,
         data: function () {
           return {
-            user : this.user,
+            username : this.username,
             password: ''
           }
         },
         methods: {
           login () {
-            var compo = this
+            let compo = this;
             this.$http.post('/login', {
-              user: this.user,
+              username: this.username,
               password: this.password
+
             }).then(function (response){
               if (response.status === 200) {
-                console.log(response.data.user)
-                compo.$emit('changeuser', response.data.user)
+                //console.log(response.data.user)
+                compo.$emit('change-user', response.data.user)
                 }
               })
+              console.log(this.username + this.password);
             }
         }
       }

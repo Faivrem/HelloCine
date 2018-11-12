@@ -86,9 +86,10 @@ const app = new Vue({
     changeuser(user){
       console.log('iciiiiii')
       this.pseudo = user
-      this.changePage("connexion")
+      this.changePage("index")
     },
     inscriptionuser(user){
+
       if (user.password === user.repeatpassword){
         this.$http.post('/register',user).then(() => {
             this.changePage('listeDesFilms')

@@ -15,6 +15,7 @@
     ></navigation-bar>
 
     <index
+            v-on:change-page="changePage($event)"
             v-if="currentPage === 'index'" id="index">
     </index>
 
@@ -70,7 +71,7 @@
     <section v-if="currentPage === 'connexion'" id="connexion">
         <connexion-form
                 v-bind:user.sync="pseudo"
-                v-on:changeuser="changeuser">
+                v-on:change-user="changeuser">
         </connexion-form>
     </section>
     <section v-if="currentPage === 'inscription'" id="inscription">
