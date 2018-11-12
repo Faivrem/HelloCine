@@ -228,39 +228,43 @@
   
       <div><div class="col-lg-6">
           <div class="thumbnail">
-           <h1>Titre : <input v-model="filmitem.Title"> </h1>
-           <h2>Image (web) : <input v-model="filmitem.Poster"> </h2>
-           <h4 align="center" > Year : <input type="number" v-model="filmitem.Year"></h4>
+           <h1>Titre : <input v-model="filmvisu.Title"> </h1>
+           <h2>Image (web) : <input v-model="filmvisu.Poster"> </h2>
+           <h4 align="center" > Year : <input type="number" v-model="filmvisu.Year"></h4>
            <h4>Plot :</h4>
-           <textarea v-model="filmitem.Plot" cols="30" rows="5" > </textarea>
-            <p><b>Realeased : </b> <input type="text" v-model="filmitem.Released"></p>
-            <p><b>Actors : </b><input type="text" v-model="filmitem.Actors"> </p>
-            <p><b>Awards : </b><input type="text" v-model="filmitem.Awards"> </p>
-            <p><b>Runtime : </b><input type="text" v-model="filmitem.Runtime"> </p>
-            <p><b>Rating : </b><input type="number" v-model="filmitem.imdbRating"></p>
+           <textarea v-model="filmvisu.Plot" cols="30" rows="5" > </textarea>
+            <p><b>Realeased : </b> <input type="text" v-model="filmvisu.Released"></p>
+            <p><b>Actors : </b><input type="text" v-model="filmvisu.Actors"> </p>
+            <p><b>Awards : </b><input type="text" v-model="filmvisu.Awards"> </p>
+            <p><b>Runtime : </b><input type="text" v-model="filmvisu.Runtime"> </p>
+            <p><b>Rating : </b><input type="number" v-model="filmvisu.imdbRating"></p>
          </div>
      </div>
           
           <div class="col-lg-6">
           <div class="thumbnail">
-          <h1 align="center">{{ filmitem.Title }}</h1>
-          <h4 align="center" >{{ filmitem.Year }} </h4>
+          <h1 align="center">{{ filmvisu.Title }}</h1>
+          <h4 align="center" >{{ filmvisu.Year }} </h4>
               <img :src= "filmitem.Poster" alt="...">
               <div class="caption">
-                  <p><b>Plot : </b>{{ filmitem.Plot }}</p>
-                  <p><b>Realeased : </b>{{ filmitem.Released }}</p>
-                  <p><b>Actors : </b>{{ filmitem.Actors }}</p>
-                  <p><b>Awards : </b>{{ filmitem.Awards }}</p>
-                  <p><b>Runtime : </b>{{ filmitem.Runtime }}</p>
-                  <p><b>Rating : </b>{{ filmitem.imdbRating }}/10</p>
+                  <p><b>Plot : </b>{{ filmvisu.Plot }}</p>
+                  <p><b>Realeased : </b>{{ filmvisu.Released }}</p>
+                  <p><b>Actors : </b>{{ filmvisu.Actors }}</p>
+                  <p><b>Awards : </b>{{ filmvisu.Awards }}</p>
+                  <p><b>Runtime : </b>{{ filmvisu.Runtime }}</p>
+                  <p><b>Rating : </b>{{ filmvisu.imdbRating }}/10</p>
               </div>
           </div>
-          <a @click="$emit('modify-film', filmitem)" class="btn btn-primary" role="button">Edit</a>
+          <a @click="$emit('modify-film', filmvisu)" class="btn btn-primary" role="button">Edit</a>
           <a @click="$emit('change-page', 'listeDesFilms')" class="btn btn-default" role="button">Annuler</a>
       </div>
       </div>
-      `
-
+      `,
+      data: function () {
+        return {
+          filmvisu: Vue.util.extend({}, this.filmitem)
+        }
+      }
     });
   Vue.component('film-add', {
     template : `
