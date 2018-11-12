@@ -25,6 +25,12 @@ router.post('/add',(req,res) => {
   res.status(200).send('OK')
 })
 
+
+router.post('/edit', (req,res) => {
+    listFilms[req.body.Index] = req.body
+    res.status(200).send('OK')
+})
+
 /* User */
 router.post('/register',(req,res) => {
 

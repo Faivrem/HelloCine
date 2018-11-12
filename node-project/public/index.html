@@ -62,6 +62,7 @@
         <film-edit
                 v-bind:filmitem="filmsList[currentFilmId]"
                 v-on:change-page="changePage($event)"
+                v-on:modify-film="modifyFilm($event)"
         >
         </film-edit>
     </section>

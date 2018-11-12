@@ -62,6 +62,26 @@ const app = new Vue({
       }
     },
 
+    modifyFilm (film) {
+
+      console.log(film)
+
+      if (film.Title == "") {
+            alert('Veuillez indiquer le titre')
+      }
+      else {
+          //film['Index'] = this.filmsList.length
+          this.$http.post('/edit',film).then(() => {
+              //this.filmsList.push(film)
+              //console.log(this.filmsList[film.Index])
+              this.filmsList[film.Index] = film
+              this.changePage('listeDesFilms')
+              alert('Votre film a bien été modifié')
+          })
+      }
+    },
+
+
     // User
     changeuser(user){
       console.log('iciiiiii')

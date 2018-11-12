@@ -255,6 +255,7 @@
                   <p><b>Rating : </b>{{ filmitem.imdbRating }}/10</p>
               </div>
           </div>
+          <a @click="$emit('modify-film', filmitem)" class="btn btn-primary" role="button">Edit</a>
           <a @click="$emit('change-page', 'listeDesFilms')" class="btn btn-default" role="button">Annuler</a>
       </div>
       </div>
