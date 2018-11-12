@@ -245,7 +245,7 @@
           <div class="thumbnail">
           <h1 align="center">{{ filmvisu.Title }}</h1>
           <h4 align="center" >{{ filmvisu.Year }} </h4>
-              <img :src= "filmitem.Poster" alt="...">
+              <img :src= "filmvisu.Poster" alt="...">
               <div class="caption">
                   <p><b>Plot : </b>{{ filmvisu.Plot }}</p>
                   <p><b>Realeased : </b>{{ filmvisu.Released }}</p>
