@@ -1,14 +1,12 @@
 /* globals Vue */
 ;(function () {
     'use strict'
-
     const template = `
     <section id="accueil">
       <h1>Titre de ma page d'accueil</h1>
       <p>Mon super texte</p>
     </section>
     `
-
     Vue.component('accueil', {
         template: template
     });
@@ -31,24 +29,18 @@
     <nav class="navbar">
         <div class="page-header">
             <ul class="nav nav-pills pull-right ">
-                <li> <a @click="$emit('change-page', 'index')">Accueil </a></li>
+                <li v-if ="mon_user!=''" > <a @click="$emit('change-page', 'index')">Accueil </a></li>
                 <li> <a @click="$emit('change-page', 'listeDesFilms')">Liste des films </a></li>
                 <li> <a @click="$emit('change-page', 'inscription')">Inscription </a></li>
 
                 <li>
-                    <i v-if= "mon_user ===''"@click="$emit('change-page', 'connexion')" class="btn btn-info button_deco" > Connexion </i>  </li>
-                </li>
-                <li>
-                      <i v-if ="mon_user!=''" @click="$emit('logout')" class="btn btn-info button_deco">Se déconnecter</i>
-                <li>
-                    <form class="navbar-form navbar-left form_deco" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Rechercher</button>
-                    </form>
+                    <i v-if= "mon_user ===''"@click="$emit('change-page', 'connexion')" class="btn btn-info button_deco" > Connexion </i>
                 </li>
 
+                <li v-if ="mon_user!=''">
+                       <span class="glyphicon glyphicon-user"> {{ mon_user.username }}</span >
+                         <i  @click="$emit('logout')" class="btn btn-info button_deco">Se déconnecter</i>
+                </li>
             </ul>
             <h3 class="modal-title titre_site"> <a class="titre_site" @click="$emit('change-page', 'index')"><i class="glyphicon glyphicon-film"></i> HelloCine</a>
             </h3>
@@ -173,7 +165,7 @@
 
     Vue.component('film-item', {
 
-        props : ['filmitem'],
+        props : ['filmitem','mon_user'],
         template : `
 
     <div class="col-lg-4">
@@ -185,7 +177,8 @@
                 <i>{{ filmitem.Year }} </i>
                 <p>
                     <a @click="$emit('event-film', 'viewFilm','filmitem.Index')" class="btn btn-primary" role="button">Voir </a> 
-                    <a @click="$emit('edit-film', 'editFilm','filmitem.Index')" class="btn btn-default" role="button">Editer </a>
+                    <a v-if ="mon_user!=''" @click="$emit('edit-film', 'editFilm','filmitem.Index')" class="btn btn-default" role="button">Editer </a>
+                    <a v-if ="mon_user!=''" @click="$emit('delete-film', 'deleteFilm','filmitem.Index')" class="btn btn-danger" role="button">Supprimer </a>
                 </p>
             </div>
         </div>
@@ -196,7 +189,7 @@
 
     Vue.component('film-view', {
 
-      props : ['filmitem'],
+      props : ['filmitem','mon_user'],
       template : `
   
       <div class="col-lg-12">
@@ -212,7 +205,8 @@
                   <p><b>Runtime : </b>{{ filmitem.Runtime }}</p>
                   <p><b>Rating : </b>{{ filmitem.imdbRating }}/10</p>
                   <p>
-                      <a @click="$emit('change-page', 'editFilm')" class="btn btn-primary" role="button">Editer </a>                            
+                      <a v-if ="mon_user!=''" @click="$emit('change-page', 'editFilm')" class="btn btn-primary" role="button">Editer </a>   
+                      <a v-if ="mon_user!=''" @click="$emit('delete-film', 'deleteFilm','filmitem.Index')" class="btn btn-danger" role="button">Supprimer </a>                         
                   </p>
               </div>
           </div>
@@ -330,56 +324,13 @@
     });
 
     Vue.component('ajouter-film-form', {
+        props : ['mon_user'],
         template: `
     <div class="col-lg-12" align="right">
-		  <p><a @click="$emit('change-page', 'addFilm')"  class="btn btn-info" >Ajouter un film</a></p>
+		  <p v-if ="mon_user!=''"><a @click="$emit('change-page', 'addFilm')"  class="btn btn-info" >Ajouter un film</a></p>
     </div>
     `
 
-    });
-
-
-    Vue.component('search-form', {
-
-        template: `
-<div>
-    <h3>Recherche</h3>
-    <form action="" method="post">
-        <table class="table table-stripped">
-            <tr>
-                <td><label for="artiste"><strong>Artiste :</strong></label>
-                    <select name="artiste">
-                        <option selected="selected" disabled="disabled" >Tous</option>
-                            <option value="?">?</option>
-                    </select>
-                </td>
-                <td><label for="note"><strong>Note entre :</strong></label>
-                    <select name="note">
-                        <option selected="selected" disabled="disabled">Tous</option>
-                        <option value=1>0 et 1</option>
-                        <option value=2>1 et 2</option>
-                        <option value=3>2 et 3</option>
-                        <option value=4>3 et 4</option>
-                        <option value=5>4 et 5</option>
-                        <option value=6>5</option>
-                    </select>
-                </td>
-                <td><label for="genre"><strong>Genre :</strong></label>
-                    <select name="genre">
-                        <option  selected="selected" disabled="disabled">Tous</option>
-                            <option value="ss"> ss</option>
-
-                    </select>
-                </td>
-                <td><label for="date"><strong>Sortie le :</strong></label>
-                <input type="date" name="date" id="date"/></td>
-                <td><input type="submit" class="btn btn-info" name="recherche" value="Rechercher"/></td>
-            </tr>
-        </table>
-    </form>
-    <br>
-    </div>
-    `,
     });
 
 })()

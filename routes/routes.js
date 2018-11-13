@@ -34,15 +34,30 @@ router.post('/edit', (req,res) => {
     res.status(200).send('OK')
 });
 
+router.post('/delete', (req,res) => {
+    console.log('ok')
+  listFilms.splice(req.body.Index,1)
+  for (let i=0; i<listFilms.length ; i++){
+    listFilms[i].Index = i
+  }
+  res.status(200).send('OK')
+});
+
+
 
 /* inscription */
-router.post('/register', (req,res) => {
-    if (users.hasOwnProperty(req.body.login)){
-        res.status(401).send('NOK')
+router.post('/register', (req,res,next) => {
+    var message ="Votre inscription s'est bien déroulée"
+    for (userDb of users) {
+      if (userDb.username === req.body.username) { /*  A modifier */
+          message = "Attention, l'utilisateur existe déjà !"
+      }
     }
-    else{
-        users.push(req.body)
-        res.status(200).send('OK')
+    if (message==="Votre inscription s'est bien déroulée"){
+      users.push(req.body)
+      res.status(200).send(message)
+    }else{
+      res.status(201).send(message)
     }
 })
 
@@ -97,84 +112,5 @@ router.post('/login', (req, res, next) => {
         next(err)
     }
 })
-
-
-
-
-/* User
-
-// authenticate user
-router.post('/login', (req,res) => {
-    const username = req.body.login;
-    const password = req.body.password;
-    if (!req.body.login || !req.body.password || !req.body.repeatpassword) {
-        throw new Error('INVALID_PARAMETERS');
-    }
-
-    const users = JSON.parse(fs.readFileSync(listUsers));
-    let user = null;
-
-    for (let i = 0; i < users.length; i++) {
-        const currentUser = users[i];
-        if (currentUser.username === username && bcrypt.compareSync(password, currentUser.password)) {
-            user = currentUser;
-            break;
-        }
-    }
-
-    if (!user) {
-        throw new Error('INVALID_CREDENTIALS');
-    }
-    // On renvoie pas son password
-    delete user.password;
-    const payload = {
-        user: user
-    };
-
-    const token = jwt.sign(payload, 'monsecret', {
-        expiresIn: '1d'
-    });
-
-    return token;
-});
-
-// register a new user
-router.post('/register', (req,res) => {
-    if (!req.body.login || !req.body.password || !req.body.repeatpassword) {
-        res.status(400).send('Invalid parameters');
-    }
-
-    const users = JSON.parse(fs.readFileSync(listUsers));
-
-    for (let i = 0; i < users.length; i++) {
-        const currentUser = users[i];
-        if (currentUser.username === username) {
-            // username already exists
-            res.status(400).send('Username already exists');
-        }
-    }
-
-    let id = 1;
-    if (users.length > 0) {
-        id = users[users.length - 1].id + 1;
-    }
-
-    const saltRounds = 10;
-    const hash = bcrypt.hashSync(password, saltRounds);
-
-    const user = {
-        id: id,
-        username: username,
-        password: hash,
-        level: 'USER'
-    };
-
-    users.push(user);
-    fs.writeFileSync(listUsers, JSON.stringify(users));
-});
-*/
-
-
-
 
 module.exports = router;

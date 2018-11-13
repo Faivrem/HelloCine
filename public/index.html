@@ -9,13 +9,11 @@
 </head>
 <body>
 <main id="app" class="container">
-    {{ mon_user.username }}
     <navigation-bar
         v-on:change-page="changePage($event)"
         v-on:logout="logout($event)"
         v-bind:mon_user="mon_user"
     ></navigation-bar>
-
     <index
             v-bind:mon_user="mon_user"
             v-on:change-page="changePage($event)"
@@ -23,23 +21,28 @@
     </index>
 
     <section v-if="currentPage === 'listeDesFilms'" id="search">
-        <search-form></search-form>
     </section>
 
     <section>
         <ajouter-film-form v-if="currentPage === 'listeDesFilms'|| currentPage === 'index'"
                            v-on:change-page="changePage($event)"
+                           v-bind:mon_user="mon_user"
         >
         </ajouter-film-form>
     </section>
 
     <section v-if="currentPage === 'listeDesFilms'  || currentPage === 'index'" id="listeDesFilms">
-        <div class="row" v-for="i in Math.ceil(filmsList.length / 3)">
+                <div class="form-group">
+                    <input v-model="search" type="text" class="form-control" placeholder="Search">
+                </div>
+        <div class="row" v-for="i in Math.ceil(filteredList.length / 3)" >
         <film-item
-                v-for="film in filmsList.slice((i - 1) * 3, i * 3)"
+                v-for="film in filteredList.slice((i - 1) * 3, i * 3)"
                 v-bind:filmitem="film"
+                v-bind:mon_user="mon_user"
                 v-on:event-film="viewFilm(film.Index)"
                 v-on:edit-film="editFilm(film.Index)"
+                v-on:delete-film="deleteFilm(film)"
                 >
         </film-item>
         </div>
@@ -48,6 +51,8 @@
             <film-view
                     v-bind:filmitem="filmsList[currentFilmId]"
                     v-on:change-page="changePage($event)"
+                    v-bind:mon_user="mon_user"
+                    v-on:delete-film="deleteFilm(filmsList[currentFilmId])"
                     >
             </film-view>
     </section>
