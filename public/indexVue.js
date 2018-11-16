@@ -96,8 +96,8 @@ const app = new Vue({
 
       // User
       changeuser (user) {
-        console.log('iciiiiii')
-        this.pseudo = user
+        console.log('iciiiiii');
+        this.pseudo = user;
         this.changePage("index")
       },
       inscriptionuser (user) {
@@ -122,7 +122,44 @@ const app = new Vue({
           this.changePage('index')
           alert('Vous êtes déconnecté')
         })
-      }
+      },
+        connexion (user) {
+          if (user.password != "" && user.username != "") {
+            this.$http.post('/login', user)
+                .then((res) => {
+                  //console.log("res" + res.status);
+                  //alert(res.data.message);
+                  if (res.data.status === 200) {
+                      console.log("STATUS 200");
+                      this.changePage('listeDesFilms')
+                  }
+                  if (res.data.status === 201) {
+                      console.log("STATUS 401");
+                      this.changePage('connexion')
+                  }
+                  else {
+                    console.log('ELSE');
+                  }
+              }).catch(error => {
+                  console.log(error);
+                  alert(error.body)
+              });
+          }
+          else {
+              alert("Le ou les champs sont vides !")
+          }
+
+          /*
+          this.$http.post('/login', {
+              username: this.username,
+              password: this.password
+            }).then(function (response){
+                if (response.status === 200) {
+                    //console.log(response.data.user)
+                    compo.$emit('change-user', response.data.user)
+                }
+            })*/
+        }
     },
   computed: {
     filteredList() {

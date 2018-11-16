@@ -109,11 +109,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputAddress">Login</label>
-                        <input v-model ="username" type="text" class="form-control mesinputs" id="inputAddress" placeholder="Login">
+                        <input v-model ="user.username" type="text" class="form-control mesinputs" id="inputAddress" placeholder="Login">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="inputEmail4">Mot de passe</label>
-                        <input v-model ="password" type="password" class="form-control mesinputs" id="inputEmail4" placeholder="Mot de passe">
+                        <input v-model ="user.password" type="password" class="form-control mesinputs" id="inputEmail4" placeholder="Mot de passe">
                     </div>
                 </div>
     
@@ -122,7 +122,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <button @click="login()" class="btn btn-primary">Connexion</button>
+                        <button @click="$emit('connexion', user)" class="btn btn-primary">Connexion</button>
                     </div>
                 </div>
             </form>
@@ -132,11 +132,16 @@
     `,
         data: function () {
           return {
-            username : this.username,
-            password: ''
+              user : {
+                  'username' : '',
+                  'password' :''
+              }
+            //username : this.username,
+            //password: ''
           }
         },
         methods: {
+            /*@click="login()"*/
           login () {
             let compo = this;
             this.$http.post('/login', {
@@ -154,13 +159,6 @@
         }
       }
     );
-
-    Vue.component('podium', {
-
-        template : `
-    <h2 class="top_titre_centrer">Les  3 derniers films</h2>
-    `
-    });
 
 
     Vue.component('film-item', {

@@ -75,7 +75,8 @@
 
     <section v-if="currentPage === 'connexion'" id="connexion">
         <connexion-form
-                v-on:change-user="changeuser">
+                v-on:change-user="changeuser($event)"
+                v-on:connexion="connexion($event)">
         </connexion-form>
     </section>
     <section v-if="currentPage === 'inscription'" id="inscription">

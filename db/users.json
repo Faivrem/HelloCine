@@ -1,13 +1,14 @@
 [
   {
-    "id" : "5321cd6dbb5b0e6e72d75c80",
     "username" :"maxime",
     "password" :"1234"
   },
   {
-    "id" : "5321cd6dbb5b0e6e72d75c80",
     "username" :"ludo",
     "password" :"1234"
+  },
+  {
+    "username": "ludovic",
+    "password" :"$2b$10$wE72ZzIYFyeCgUf1I0ra9.MeMmt3Pg9oC8J3CHCF5GXyGxn0dd3Xm"
   }
-
 ]
