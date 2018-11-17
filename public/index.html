@@ -74,12 +74,26 @@
     </section>
 
     <section v-if="currentPage === 'connexion'" id="connexion">
+        <div v-if="error.message!=''"class="alert alert-danger" role="alert">
+            <strong>{{ error.message }}</strong>
+        </div>
+
+        <div v-if="success.message!=''"class="alert alert-success" role="alert">
+            <strong>{{ success.message }}</strong>
+        </div>
+
         <connexion-form
-                v-on:change-user="changeuser($event)"
                 v-on:connexion="connexion($event)">
         </connexion-form>
     </section>
     <section v-if="currentPage === 'inscription'" id="inscription">
+        <div v-if="error.message!=''"class="alert alert-danger" role="alert">
+            <strong>{{ error.message }}</strong>
+        </div>
+
+        <div v-if="success.message!=''"class="alert alert-success" role="alert">
+            <strong>{{ success.message }}</strong>
+        </div>
         <inscription-form
             v-on:inscriptionuser="inscriptionuser($event)"
         >
@@ -92,6 +106,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="component.js"></script>
 <script src="indexVue.js">
 </script>

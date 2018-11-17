@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 
 
-
 // Routes
 const routes = require('./routes/index');
 
@@ -45,6 +44,7 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500)
     res.render('error')
 });
+
 
 
 module.exports = app;

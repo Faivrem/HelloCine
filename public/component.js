@@ -53,7 +53,9 @@
     Vue.component('inscription-form', {
 
         template : `
+
     <div class="panel panel-default">
+        
         <div class="panel-heading">
             <h1 class="modal-title">Inscription </h1>
         </div>
@@ -76,16 +78,15 @@
                         <input type="password" class="form-control" v-model="user.repeatpassword"  placeholder="Mot de passe">
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <a @click="$emit('inscriptionuser', user)" class="btn btn-primary" role="button">S'inscrire </a>
-                    </div>
-                </div>
             </form>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <a @click="$emit('inscriptionuser', user)" class="btn btn-primary" role="button">S'inscrire </a>
+                </div>
+            </div>
         </div>
     </div>
-    
-    
+ 
     `,
       data: function () {
         return {
@@ -116,16 +117,13 @@
                         <input v-model ="user.password" type="password" class="form-control mesinputs" id="inputEmail4" placeholder="Mot de passe">
                     </div>
                 </div>
-    
-                <div class="form-row">
-    
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <button @click="$emit('connexion', user)" class="btn btn-primary">Connexion</button>
-                    </div>
-                </div>
+
             </form>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <button @click="$emit('connexion', user)" class="btn btn-primary">Connexion</button>
+                </div>
+            </div>
         </div>
 	</div>
     
@@ -141,7 +139,8 @@
           }
         },
         methods: {
-            /*@click="login()"*/
+            /*
+            /*@click="login()"
           login () {
             let compo = this;
             this.$http.post('/login', {
@@ -155,7 +154,7 @@
                 }
               })
               console.log(this.username + this.password);
-            }
+            }*/
         }
       }
     );
@@ -331,4 +330,7 @@
 
     });
 
-})()
+
+
+
+})();
