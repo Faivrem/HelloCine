@@ -1,14 +1,1 @@
-[
-  {
-    "username" :"maxime",
-    "password" :"1234"
-  },
-  {
-    "username" :"ludo",
-    "password" :"1234"
-  },
-  {
-    "username": "ludovic",
-    "password" :"$2b$10$wE72ZzIYFyeCgUf1I0ra9.MeMmt3Pg9oC8J3CHCF5GXyGxn0dd3Xm"
-  }
-]
+[{"username":"salut","password":"$2b$10$HIfB0lwsWsqmVL/tv2vzFuFxOxqVVlsk.ge/6Vqp3Bg.SIUAG.FBu"},{"username":"ludo","password":"$2b$10$yX4s7TTRSMpI9OoAY2C/NOHYkEKBvPZVgtw6SLQfp9ZdxfxhGo5b2"},{"username":"maxime","password":"$2b$10$QyaaLSkerM1dBrTfAkgeAe9CrXlnkGRWp7qoidsr7HiUfH9UjFGBy"}]

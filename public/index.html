@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello Cine</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-    <link href="stylesheets/mon_style.css" rel="stylesheet" />
+    <link href="stylesheets/mon_style.css" rel="stylesheet"/>
 </head>
 <body>
 <main id="app" class="container">
     <navigation-bar
-        v-on:change-page="changePage($event)"
-        v-on:logout="logout($event)"
-        v-bind:mon_user="mon_user"
+            v-on:change-page="changePage($event)"
+            v-on:logout="logout($event)"
+            v-bind:mon_user="mon_user"
     ></navigation-bar>
     <index
             v-bind:mon_user="mon_user"
@@ -32,29 +33,29 @@
     </section>
 
     <section v-if="currentPage === 'listeDesFilms'  || currentPage === 'index'" id="listeDesFilms">
-                <div class="form-group">
-                    <input v-model="search" type="text" class="form-control" placeholder="Search">
-                </div>
-        <div class="row" v-for="i in Math.ceil(filteredList.length / 3)" >
-        <film-item
-                v-for="film in filteredList.slice((i - 1) * 3, i * 3)"
-                v-bind:filmitem="film"
-                v-bind:mon_user="mon_user"
-                v-on:event-film="viewFilm(film.Index)"
-                v-on:edit-film="editFilm(film.Index)"
-                v-on:delete-film="deleteFilm(film)"
-                >
-        </film-item>
+        <div class="form-group">
+            <input v-model="search" type="text" class="form-control" placeholder="Search">
+        </div>
+        <div class="row" v-for="i in Math.ceil(filteredList.length / 3)">
+            <film-item
+                    v-for="film in filteredList.slice((i - 1) * 3, i * 3)"
+                    v-bind:filmitem="film"
+                    v-bind:mon_user="mon_user"
+                    v-on:event-film="viewFilm(film.Index)"
+                    v-on:edit-film="editFilm(film.Index)"
+                    v-on:delete-film="deleteFilm(film)"
+            >
+            </film-item>
         </div>
     </section>
     <section v-if="currentPage === 'viewFilm'" id="viewFilm">
-            <film-view
-                    v-bind:filmitem="filmsList[currentFilmId]"
-                    v-on:change-page="changePage($event)"
-                    v-bind:mon_user="mon_user"
-                    v-on:delete-film="deleteFilm(filmsList[currentFilmId])"
-                    >
-            </film-view>
+        <film-view
+                v-bind:filmitem="filmsList[currentFilmId]"
+                v-on:change-page="changePage($event)"
+                v-bind:mon_user="mon_user"
+                v-on:delete-film="deleteFilm(filmsList[currentFilmId])"
+        >
+        </film-view>
     </section>
 
     <section v-if="currentPage === 'addFilm'" id="addFilm">
@@ -74,11 +75,11 @@
     </section>
 
     <section v-if="currentPage === 'connexion'" id="connexion">
-        <div v-if="error.message!=''"class="alert alert-danger" role="alert">
+        <div v-if="error.message!=''" class="alert alert-danger" role="alert">
             <strong>{{ error.message }}</strong>
         </div>
 
-        <div v-if="success.message!=''"class="alert alert-success" role="alert">
+        <div v-if="success.message!=''" class="alert alert-success" role="alert">
             <strong>{{ success.message }}</strong>
         </div>
 
@@ -87,19 +88,18 @@
         </connexion-form>
     </section>
     <section v-if="currentPage === 'inscription'" id="inscription">
-        <div v-if="error.message!=''"class="alert alert-danger" role="alert">
+        <div v-if="error.message!=''" class="alert alert-danger" role="alert">
             <strong>{{ error.message }}</strong>
         </div>
 
-        <div v-if="success.message!=''"class="alert alert-success" role="alert">
+        <div v-if="success.message!=''" class="alert alert-success" role="alert">
             <strong>{{ success.message }}</strong>
         </div>
         <inscription-form
-            v-on:inscriptionuser="inscriptionuser($event)"
+                v-on:inscriptionuser="inscriptionuser($event)"
         >
         </inscription-form>
     </section>
-
 
 
 </main>

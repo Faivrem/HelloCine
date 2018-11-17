@@ -1,18 +1,10 @@
-.podium {
-    text-align: center;
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-.podium div {
-    width:230px;
-    height:230px;
-}
-.top1 {
-    margin:auto
-}
-.top2 {
-    display:inline-block;
-}
-.top3 {
-    display:inline-block;
+
+a {
+    color: #00B7FF;
 }
 
 .mesinputs {
@@ -25,8 +17,9 @@
 }
 
 .accueil_titre{
-    color: #ffffff
+    color: #ffffff;
 }
+
 
 .top_titre_centrer{
     color: #ffffff;
@@ -51,4 +44,23 @@ input .form_deco{
 
 a:focus, a:hover {
     text-decoration: none;
+}
+
+.thumbnail {
+
+    text-align: center;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.user-icon {
+
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    border-radius: 4px;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+span glyphicon glyphicon-user {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }

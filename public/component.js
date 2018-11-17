@@ -1,19 +1,10 @@
 /* globals Vue */
 ;(function () {
-    'use strict'
-    const template = `
-    <section id="accueil">
-      <h1>Titre de ma page d'accueil</h1>
-      <p>Mon super texte</p>
-    </section>
-    `
-    Vue.component('accueil', {
-        template: template
-    });
+	'use strict'
 
-    Vue.component('index', {
-        props : ['mon_user'],
-        template : `
+	Vue.component('index', {
+		props: ['mon_user'],
+		template: `
     <div class="jumbotron accueil_titre" style="background-image:url(images/background.png);">
 	    <h1>Bienvenue sur l'application Hello Ciné !</h1>
 		<p></p>
@@ -21,11 +12,11 @@
 		<a class="btn btn-primary btn-lg" @click="$emit('change-page', 'inscription')" role="button">Inscription</a></p>
 	</div>
     `
-    });
+	})
 
-    Vue.component('navigation-bar', {
-        props : ['mon_user'],
-        template : `
+	Vue.component('navigation-bar', {
+		props: ['mon_user'],
+		template: `
     <nav class="navbar">
         <div class="page-header">
             <ul class="nav nav-pills pull-right ">
@@ -37,22 +28,23 @@
                     <i v-if= "mon_user ===''"@click="$emit('change-page', 'connexion')" class="btn btn-info button_deco" > Connexion </i>
                 </li>
 
-                <li v-if ="mon_user!=''">
+                <li v-if ="mon_user!=''" class="user-icon">
                        <span class="glyphicon glyphicon-user"> {{ mon_user.username }}</span >
-                         <i  @click="$emit('logout')" class="btn btn-info button_deco">Se déconnecter</i>
                 </li>
+                <li v-if ="mon_user!=''">
+                	<i  @click="$emit('logout')" class="btn btn-info button_deco">Se déconnecter</i>
+				</li>
             </ul>
             <h3 class="modal-title titre_site"> <a class="titre_site" @click="$emit('change-page', 'index')"><i class="glyphicon glyphicon-film"></i> HelloCine</a>
             </h3>
         </div>
     </nav>
     `
-    });
+	})
 
+	Vue.component('inscription-form', {
 
-    Vue.component('inscription-form', {
-
-        template : `
+		template: `
 
     <div class="panel panel-default">
         
@@ -88,19 +80,19 @@
     </div>
  
     `,
-      data: function () {
-        return {
-          user : {
-            'username' : '',
-            'password' :'',
-            'repeatpassword' : ''
-          }
-        }
-      },
-    });
+		data: function () {
+			return {
+				user: {
+					'username': '',
+					'password': '',
+					'repeatpassword': ''
+				}
+			}
+		},
+	})
 
-    Vue.component('connexion-form', {
-        template: `
+	Vue.component('connexion-form', {
+			template: `
     <div class="panel panel-default">
 	    <div class="panel-heading">
 			<h1 class="modal-title">Connexion </h1>
@@ -128,42 +120,41 @@
 	</div>
     
     `,
-        data: function () {
-          return {
-              user : {
-                  'username' : '',
-                  'password' :''
-              }
-            //username : this.username,
-            //password: ''
-          }
-        },
-        methods: {
-            /*
-            /*@click="login()"
-          login () {
-            let compo = this;
-            this.$http.post('/login', {
-              username: this.username,
-              password: this.password
+			data: function () {
+				return {
+					user: {
+						'username': '',
+						'password': ''
+					}
+					//username : this.username,
+					//password: ''
+				}
+			},
+			methods: {
+				/*
+				/*@click="login()"
+			  login () {
+				let compo = this;
+				this.$http.post('/login', {
+				  username: this.username,
+				  password: this.password
 
-            }).then(function (response){
-              if (response.status === 200) {
-                //console.log(response.data.user)
-                compo.$emit('change-user', response.data.user)
-                }
-              })
-              console.log(this.username + this.password);
-            }*/
-        }
-      }
-    );
+				}).then(function (response){
+				  if (response.status === 200) {
+					//console.log(response.data.user)
+					compo.$emit('change-user', response.data.user)
+					}
+				  })
+				  console.log(this.username + this.password);
+				}*/
+			}
+		}
+	)
 
+	Vue.component('film-item', {
 
-    Vue.component('film-item', {
-
-        props : ['filmitem','mon_user'],
-        template : `
+		props: ['filmitem', 'mon_user'],
+		template: `
 
     <div class="col-lg-4">
         <div class="thumbnail">
@@ -182,12 +173,12 @@
     </div>
     `
 
-    });
+	})
 
-    Vue.component('film-view', {
+	Vue.component('film-view', {
 
-      props : ['filmitem','mon_user'],
-      template : `
+		props: ['filmitem', 'mon_user'],
+		template: `
   
       <div class="col-lg-12">
           <div class="thumbnail">
@@ -211,11 +202,11 @@
       </div>
       `
 
-    });
-    Vue.component('film-edit', {
+	})
+	Vue.component('film-edit', {
 
-      props : ['filmitem'],
-      template : `
+		props: ['filmitem'],
+		template: `
   
       <div><div class="col-lg-6">
           <div class="thumbnail">
@@ -251,14 +242,14 @@
       </div>
       </div>
       `,
-      data: function () {
-        return {
-          filmvisu: Vue.util.extend({}, this.filmitem)
-        }
-      }
-    });
-  Vue.component('film-add', {
-    template : `
+		data: function () {
+			return {
+				filmvisu: Vue.util.extend({}, this.filmitem)
+			}
+		}
+	})
+	Vue.component('film-add', {
+		template: `
       <div>
       <div class="col-lg-6">
           <div class="thumbnail">
@@ -294,43 +285,40 @@
       </div>
       </div>
       `,
-    data: function () {
-      return {
-        filmitem : {
-          "Title" : '',
-          "Poster" : 'http://nulldefinition.com/wp-content/uploads/2016/09/null_logo-300x300.png',
-          "Year" : 0,
-          "Plot" : '',
-          "Released" : '',
-          "Actors" : '',
-          "Awards" : '',
-          "Runtime" : '',
-          "Rating" : 0,
-        }
-      }
-    }
+		data: function () {
+			return {
+				filmitem: {
+					'Title': '',
+					'Poster': 'http://nulldefinition.com/wp-content/uploads/2016/09/null_logo-300x300.png',
+					'Year': 0,
+					'Plot': '',
+					'Released': '',
+					'Actors': '',
+					'Awards': '',
+					'Runtime': '',
+					'Rating': 0,
+				}
+			}
+		}
 
-  });
+	})
 
-    Vue.component('footer-item', {
-        template: `
+	Vue.component('footer-item', {
+		template: `
      <div class="text-center">
         <a @click="$emit('change-page', 'index')"  class="btn btn-default" >Page d'accueil</a>
      </div>
     `
-    });
+	})
 
-    Vue.component('ajouter-film-form', {
-        props : ['mon_user'],
-        template: `
+	Vue.component('ajouter-film-form', {
+		props: ['mon_user'],
+		template: `
     <div class="col-lg-12" align="right">
 		  <p v-if ="mon_user!=''"><a @click="$emit('change-page', 'addFilm')"  class="btn btn-info" >Ajouter un film</a></p>
     </div>
     `
 
-    });
+	})
 
-
-
-
-})();
+})()
