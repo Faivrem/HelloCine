@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const listFilms = require('../db/films.json')
 const users = require('../db/users.json')
 const fs = require('fs')
